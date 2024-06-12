@@ -1,6 +1,4 @@
-// Importa tus estilos CSS personalizados
-// import "@/assets/main.css";
-import "@/assets/style.css"; //in your main.js file
+import "@/assets/style.css";
 import "../node_modules/flowbite-vue/dist/index.css";
 
 // Importa las dependencias de Vue y Vue Router
@@ -9,11 +7,6 @@ import { createApp } from "vue";
 
 import App from "./App.vue";
 import router from "./router";
-
-// // Importa Flowbite y sus estilos CSS
-// import 'flowbite';
-// import 'flowbite/dist/flowbite.css';
-// import 'flowbite-vue/dist/flowbite-vue.css';
 
 // Importa los iconos de Font Awesome para OhVueIcon
 import { OhVueIcon, addIcons } from "oh-vue-icons";

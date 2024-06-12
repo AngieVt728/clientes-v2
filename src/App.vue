@@ -28,4 +28,3 @@ import {
   FwbNavbarLogo,
 } from "flowbite-vue";
 </script>
-
