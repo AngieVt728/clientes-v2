@@ -1,34 +1,28 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import OrdersView from '../views/OrdersView.vue'
-import ProductsView from '../views/ProductsView.vue'
-import ProfileView from '../views/ProfileView.vue'
+import { createRouter, createWebHistory } from "vue-router";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/home',
-      name: 'home',
-      component: HomeView
+      path: "/",
+      redirect: "/home",
+      component: () => import("@/layouts/AdminLayout.vue"),
+      children: [
+        {
+          path: "/home",
+          component: () => import("@/views/home/Index.vue"),
+        },
+        {
+          path: "/orders",
+          component: () => import("@/views/orders/Index.vue"),
+        },
+      ],
     },
     {
-      path: '/profile',
-      name: 'profile',
-      component: ProfileView
+      path: "/:pathMatch(.*)*",
+      redirect: "/",
     },
-    {
-      path: '/products',
-      name: 'products',
-      component: ProductsView
-    },
-    {
-      path: '/orders',
-      name: 'orders',
-      component: OrdersView
-    },
-  
-  ]
-})
+  ],
+});
 
-export default router
+export default router;
