@@ -1,0 +1,2 @@
+# * URL base de la API que se utilizará en la configuración de axios
+VITE_API_BASEURL=https://api.ejemplo.com
