@@ -1,28 +1,7 @@
-/* or in your app.css file */
+
 @import "/node_modules/flowbite-vue/dist/index.css";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-.custom-carousel img {
-    width: 100%;
-    height: auto;
-    max-height: 500px; /* Ajusta según tus necesidades */
-    object-fit: cover;
-  }
-  
-  .custom-carousel .indicator {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.5); /* Indicadores semi-transparentes */
-    margin: 0 4px;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .custom-carousel .indicator.active {
-    background-color: rgba(105, 19, 139, 0.8); /* Indicador activo en rojo */
-  }
-  

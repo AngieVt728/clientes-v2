@@ -24,6 +24,14 @@ const router = createRouter({
           path: "/profile",
           component: () => import("@/views/home/Profile.vue"),
         },
+        {
+          path: "/newpedido",
+          component: () => import("@/views/home/NewOrder.vue"),
+        },
+        {
+          path: "/login",
+          component: () => import("@/views/login.vue"),
+        },
       ],
     },
     {

@@ -1,21 +1,40 @@
 <script setup>
-import { FwbCarousel } from "flowbite-vue";
+import { FwbCarousel, FwbCard } from "flowbite-vue";
 import {
   FwbFooter,
-  FwbFooterCopyright,
+  FwbFooterBrand,
   FwbFooterLink,
   FwbFooterLinkGroup,
+  FwbFooterCopyright
 } from "flowbite-vue";
-import { ref } from "vue";
+import { ref, watch } from "vue";
+import { getProductsRequest } from "@/api/product"; 
 import { FwbTab, FwbTabs } from "flowbite-vue";
+import { onMounted } from "vue";
 
-const pictures = [
-  { src: "/src/assets/logo.svg", alt: "Image 1" },
-  { src: "/src/assets/logo.svg", alt: "Image 2" },
-  { src: "/src/assets/logo.svg", alt: "Image 3" },
-];
+// Crea una referencia reactiva para almacenar los productos
+const products = ref([]);
 
-const activeTab = ref("first");
+// Función que se ejecuta cuando el componente se monta
+onMounted(async () => {
+  try {
+    // Realiza la petición para obtener los productos
+    const res = await getProductsRequest();
+    // Almacena los datos de los productos en la referencia reactiva
+    products.value = res.data;
+    console.log(products.value); // Muestra los productos en la consola para verificación
+  } catch (error) {
+    console.log(error); // Maneja errores en la petición
+  }
+});
+
+// Construir la lista de imágenes para el carrusel a partir de la lista de productos
+const pictures = ref([]);
+
+// Observa cambios en la lista de productos y actualiza la lista de imágenes
+watch(products, () => {
+  pictures.value = products.value.map(product => ({ src: product.image, alt: product.name }));
+});
 </script>
 
 <template>
@@ -29,7 +48,7 @@ const activeTab = ref("first");
     </template>
   </fwb-carousel>
 
-  <h2>Aqui se visualiza lla info de los productos</h2>
+  <h2>Aqui se visualiza la info de los productos</h2>
   <fwb-tabs v-model="activeTab" class="p-5">
     <fwb-tab name="first" title="First"> 1 Lorem ipsum dolor... </fwb-tab>
     <fwb-tab name="second" title="Second"> 2 Lorem ipsum dolor... </fwb-tab>
@@ -42,7 +61,6 @@ const activeTab = ref("first");
       <div class="sm:flex sm:items-center sm:justify-between">
         <fwb-footer-brand
           href="https://flowbite.com"
-          src="https://flowbite.com/docs/images/logo.svg"
           alt="Flowbite Logo"
           name="Flowbite"
         />
